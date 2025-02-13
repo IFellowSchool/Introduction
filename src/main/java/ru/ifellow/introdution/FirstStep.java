@@ -1,89 +1,136 @@
 package ru.ifellow.introdution;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 public class FirstStep {
 
-    public int sum (int x, int y){
+    public int sum(int x, int y) {
+        if (Integer.MAX_VALUE - x < y || Integer.MIN_VALUE - x < y) {
+            throw new IllegalArgumentException(String.format("sum of numbers %d and %d over of integer range", x, y));
+        }
+        return x + y;
+    }
+
+    public int mul(int x, int y) {
+        if (Integer.MAX_VALUE / Math.abs(x) < Math.abs(y)) {
+            throw new IllegalArgumentException(String.format("product of numbers %d and %d over of integer range", x, y));
+        }
+        return x * y;
+    }
+
+    public int div(int x, int y) {
+        return x / y;
 
     }
 
-    public int mul (int x, int y){
+    public int mod(int x, int y) {
+        return x % y;
+    }
+
+    public boolean isEqual(int x, int y) {
+        return x == y;
+    }
+
+    public boolean isGreater(int x, int y) {
+        return x > y;
+    }
+
+    public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y) {
+        return x >= xLeft && x <= xRight && y >= yTop && y <= yBottom;
 
     }
 
-    public int div (int x, int y){
+    public int sum(int[] array) {
+        return Arrays.stream(array).reduce(this::sum).orElse(0);
+    }
+
+    public int mul(int[] array) {
+        return Arrays.stream(array).reduce(this::mul).orElse(0);
 
     }
 
-    public int mod (int x, int y){
+    public int min(int[] array) {
+        return Arrays.stream(array).min().orElse(Integer.MAX_VALUE);
 
     }
 
-    public boolean isEqual (int x, int y){
-
+    public int max(int[] array) {
+        return Arrays.stream(array).max().orElse(Integer.MIN_VALUE);
     }
 
-    public boolean isGreater (int x, int y){
-
+    public double average(int[] array) {
+        if (array.length == 0) {
+            return 0;
+        }
+        return (double) sum(array) / array.length;
     }
 
-    public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y){
-
+    public boolean isSortedDescendant(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > array[i - 1]) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public int sum(int[] array){
-
+    public void cube(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = mul(array[i], mul(array[i], array[i]));
+        }
     }
 
-    public int mul(int[] array){
-
+    public boolean find(int[] array, int value) {
+        return Arrays.stream(array).anyMatch(i -> i == value);
     }
 
-    public int min(int[] array){
-
+    public void reverse(int[] array) {
+        int s = array.length / 2 - 1;
+        for (int i = 0; i <= s; i++) {
+            int temp = array[i];
+            array[i] = array[array.length - 1 - i];
+            array[array.length - 1 - i] = temp;
+        }
     }
 
-    public int max(int[] array){
+    public boolean isPalindrome(int[] array) {
+        int iLeft = array.length / 2 - 1;
+        int iRight = array.length % 2 == 0 ? array.length / 2 : array.length / 2 + 1;
 
+        while (iLeft >= 0) {
+            if (array[iLeft] != array[iRight]) {
+                return false;
+            }
+            iLeft--;
+            iRight++;
+        }
+        return true;
     }
 
-    public double average(int[] array){
-
+    public int sum(int[][] matrix) {
+        return Stream.of(matrix).flatMapToInt(Arrays::stream).reduce(this::sum).orElse(0);
     }
 
-    public boolean isSortedDescendant(int[] array){
-
+    public int max(int[][] matrix) {
+        return Stream.of(matrix).flatMapToInt(Arrays::stream).max().orElse(Integer.MIN_VALUE);
     }
 
-    public void cube(int[]array){
-
+    public int diagonalMax(int[][] matrix) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < matrix.length; i++) {
+            max = Math.max(max,matrix[i][i]);
+        }
+        return max;
     }
 
-    public boolean find(int[]array, int value){
-
-    }
-
-    public void reverse(int[]array){
-
-    }
-
-    public boolean isPalindrome(int[]array){
-
-    }
-
-    public int sum(int[][] matrix){
-
-    }
-
-    public int max(int[][] matrix){
-
-    }
-
-    public int diagonalMax(int[][] matrix){
-
-    }
-
-    public boolean isSortedDescendant(int[][] matrix){
-
+    public boolean isSortedDescendant(int[][] matrix) {
+        for (int[] row : matrix) {
+            if (!isSortedDescendant(row)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
