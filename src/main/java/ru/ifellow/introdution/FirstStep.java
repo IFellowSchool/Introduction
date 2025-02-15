@@ -1,11 +1,5 @@
 package ru.ifellow.introdution;
 
-import com.sun.source.util.SourcePositions;
-
-import javax.xml.transform.Source;
-import java.net.SocketOption;
-import java.sql.SQLOutput;
-
 public class FirstStep {
 
     public int sum (int x, int y){
