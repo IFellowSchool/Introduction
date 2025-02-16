@@ -27,9 +27,7 @@ public class FirstStep {
     }
 
     public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y) {
-        if (x >= xLeft && x <= xRight && y >= yTop && y <= yBottom)
-            return true;
-        return false;
+        return x >= xLeft && x <= xRight && y >= yTop && y <= yBottom;
     }
 
     public int sum(int[] array) {
@@ -39,10 +37,10 @@ public class FirstStep {
     }
 
     public int mul(int[] array) {
+        if (array.length == 0)
+            return 0;
         int result = 1;
         for (int j : array) result *= j;
-        if (array.length == 0)
-            result = 0;
         return result;
     }
 
@@ -65,11 +63,9 @@ public class FirstStep {
     }
 
     public double average(int[] array) {
-        int result = 0;
-        for (int j : array)
-            result += j;
-        if (result > 0)
-            return result / (double) array.length;
+        int sum = sum(array);
+        if (sum > 0)
+            return sum / (double) array.length;
         return 0;
     }
 
@@ -113,9 +109,7 @@ public class FirstStep {
     public int sum(int[][] matrix) {
         int result = 0;
         for (int[] ints : matrix) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                result += ints[j];
-            }
+            result += sum(ints);
         }
         return result;
     }
@@ -123,10 +117,9 @@ public class FirstStep {
     public int max(int[][] matrix) {
         int result = Integer.MIN_VALUE;
         for (int[] ints : matrix) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                if (ints[j] > result)
-                    result = ints[j];
-            }
+            int max = max(ints);
+            if (max > result)
+                result = max;
         }
         return result;
     }
