@@ -44,15 +44,15 @@ public class FirstSteps {
     }
 
     public int min(int[] array) {
-        return array.length == 0 ? Integer.MAX_VALUE : Arrays.stream(array)
+        return Arrays.stream(array)
                 .min()
-                .getAsInt();
+                .orElse(Integer.MAX_VALUE);
     }
 
     public int max(int[] array) {
-        return array.length == 0 ? Integer.MIN_VALUE : Arrays.stream(array)
+        return Arrays.stream(array)
                 .max()
-                .getAsInt();
+                .orElse(Integer.MIN_VALUE);
     }
 
     public double average(int[] array) {
@@ -104,10 +104,10 @@ public class FirstSteps {
     }
 
     public int max(int[][] matrix) {
-        return matrix.length == 0 ? Integer.MIN_VALUE : Arrays.stream(matrix)
+        return Arrays.stream(matrix)
                 .flatMapToInt(IntStream::of)
                 .max()
-                .getAsInt();
+                .orElse(Integer.MIN_VALUE);
     }
 
     public int diagonalMax(int[][] matrix) {
