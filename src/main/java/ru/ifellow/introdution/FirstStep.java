@@ -83,11 +83,7 @@ public class FirstStep {
             return 0;
         }
 
-        double sum = 0;
-        for (int i : array) {
-            sum += i;
-        }
-
+        double sum = sum(array);
         return sum / array.length;
     }
 
@@ -141,10 +137,8 @@ public class FirstStep {
 
     public int sum(int[][] matrix){
         int sum = 0;
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                sum += matrix[i][j];
-            }
+        for (int[] row : matrix) {
+            sum += sum(row);
         }
         return sum;
     }
@@ -152,11 +146,10 @@ public class FirstStep {
     public int max(int[][] matrix){
         int max = Integer.MIN_VALUE;
 
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] > max) {
-                    max = matrix[i][j];
-                }
+        for (int[] row : matrix) {
+            int rowMax = max(row);
+            if (rowMax > max) {
+                max = rowMax;
             }
         }
 
