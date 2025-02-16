@@ -29,11 +29,7 @@ public class FirstStep {
     }
 
     public boolean isGreater(int x, int y) {
-        if (x > y) {
-            return true;
-        } else {
-            return false;
-        }
+        return x > y;
     }
 
     public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y) {
@@ -41,9 +37,6 @@ public class FirstStep {
     }
 
     public int sum(int[] array) {
-        if (array == null || array.length == 0) {
-            return 0;
-        }
         int sum = 0;
         for (int s : array) {
             sum += s;
@@ -53,19 +46,16 @@ public class FirstStep {
 
     public int mul(int[] array) {
         if (array == null || array.length == 0) {
-            return 0;
+            return 1;
         }
-        int sum = 0;
+        int sum = 1;
         for (int s : array) {
-            sum += s;
+            sum *= s;
         }
         return sum;
     }
 
     public int min(int[] array) {
-        if (array == null || array.length == 0) {
-            return Integer.MAX_VALUE;
-        }
 
         int min = array[0];
 
@@ -97,12 +87,7 @@ public class FirstStep {
             return 0;
         }
 
-        double sum = 0;
-        for (int num : array) {
-            sum += num;
-        }
-
-        return sum / array.length;
+        return (double) sum(array) / array.length;
     }
 
     public boolean isSortedDescendant(int[] array) {
@@ -119,8 +104,13 @@ public class FirstStep {
     }
 
     public void cube(int[] array) {
+        if (array == null) {
+            return;
+        }
+
         for (int i = 0; i < array.length; i++) {
-            array[i] = (int) Math.pow(array[i], 3);
+            int num = array[i];
+            array[i] = num * num * num;
         }
     }
 
@@ -148,6 +138,7 @@ public class FirstStep {
         return true;
     }
 
+    //принцип DRY + Math
     public int sum(int[][] matrix) {
         int s = 0;
 
@@ -159,26 +150,37 @@ public class FirstStep {
         return s;
     }
 
+    //принцип DRY
     public int max(int[][] matrix) {
         if (matrix == null || matrix.length == 0 || (matrix.length > 0 && matrix[0].length == 0)) {
             return Integer.MIN_VALUE;
         }
 
-        int min = Integer.MIN_VALUE;
+        int max = Integer.MIN_VALUE;
 
         for (int[] val : matrix) {
             for (int num : val) {
-                min = Math.max(min, num);
+                if (num > max)
+                    max = num;
             }
         }
-        return min;
+        return max;
     }
 
     public int diagonalMax(int[][] matrix) {
         if (matrix == null || matrix.length == 0) return Integer.MIN_VALUE;
+
         int max = Integer.MIN_VALUE, n = matrix.length;
-        for (int i = 0; i < n; i++)
-            if (matrix[i].length > i) max = Math.max(max, matrix[i][i]);
+
+        for (int i = 0; i < n; i++) {
+            if (matrix[i].length > i) {
+                int currentElement = matrix[i][i];
+
+                if (currentElement > max) {
+                    max = currentElement;
+                }
+            }
+        }
         return max;
     }
 
