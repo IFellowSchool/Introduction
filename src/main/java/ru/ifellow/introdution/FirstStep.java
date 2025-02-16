@@ -1,11 +1,5 @@
 package ru.ifellow.introdution;
 
-import com.sun.source.util.SourcePositions;
-
-import javax.xml.transform.Source;
-import java.net.SocketOption;
-import java.sql.SQLOutput;
-
 public class FirstStep {
 
     public int sum (int x, int y){
@@ -57,47 +51,31 @@ public class FirstStep {
     }
 
     public int min(int[] array){
-        if (array.length == 0){
-            return Integer.MAX_VALUE;
-        }
-        else {
-            int min = Integer.MAX_VALUE;
-            for (int i = 0; i < array.length; i++){
-                if (array[i] < min){
-                    min = array[i];
-                }
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < array.length; i++){
+            if (array[i] < min){
+                min = array[i];
             }
-            return min;
         }
-
+        return min;
     }
 
     public int max(int[] array){
-        if (array.length == 0){
-            return Integer.MIN_VALUE;
-        }
-        else {
-            int max = Integer.MIN_VALUE;
-            for (int i = 0; i < array.length; i++){
-                if (array[i] > max){
-                    max = array[i];
-                }
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < array.length; i++){
+            if (array[i] > max){
+                max = array[i];
             }
-            return max;
         }
+        return max;
     }
 
     public double average(int[] array){
         if (array.length == 0){
             return 0;
         }
-        else {
-            double sum = 0;
-            for (int i = 0; i < array.length; i++){
-                sum += array[i];
-            }
-            return sum / array.length;
-        }
+
+        return (double)sum(array) / array.length;
     }
 
     public boolean isSortedDescendant(int[] array){
@@ -144,43 +122,29 @@ public class FirstStep {
     public int sum(int[][] matrix){
         int sum = 0;
         for (int i = 0; i < matrix.length; i++){
-            for (int j = 0; j < matrix[i].length; j++){
-                sum += matrix[i][j];
-            }
+            sum += sum(matrix[i]);
         }
         return sum;
     }
 
     public int max(int[][] matrix){
-        if(matrix.length == 0){
-            return Integer.MIN_VALUE;
-        }
-        else {
-            int max = Integer.MIN_VALUE;
-            for (int i = 0; i < matrix.length; i++){
-                for (int j = 0; j < matrix[i].length; j++){
-                    if (matrix[i][j] > max){
-                        max = matrix[i][j];
-                    }
-                }
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < matrix.length; i++){
+            if (max(matrix[i]) > max){
+                max = max(matrix[i]);
             }
-            return max;
         }
+        return max;
     }
 
     public int diagonalMax(int[][] matrix){
-        if(matrix.length == 0){
-            return Integer.MIN_VALUE;
-        }
-        else {
-            int max = Integer.MIN_VALUE;
-            for (int i = 0; i < matrix.length; i++){
-                if (matrix[i][i] > max){
-                    max = matrix[i][i];
-                }
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < matrix.length; i++){
+            if (matrix[i][i] > max){
+                max = matrix[i][i];
             }
-            return max;
         }
+        return max;
     }
 
     public boolean isSortedDescendant(int[][] matrix){
