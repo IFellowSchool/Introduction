@@ -87,9 +87,6 @@ public class FirstStep {
     }
 
     public boolean isSortedDescendant(int[] array) {
-        if (array.length == 0) {
-            return true;
-        }
         for (int i = 0; i<array.length; i++){
             if (!(array[i] > array[i+1])) {
                 return false;
@@ -100,7 +97,7 @@ public class FirstStep {
 
     public void cube(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            array[i] = (int) Math.pow(array[i], 3);
+            array[i] = array[i] * array[i] * array[i];
         }
     }
 
@@ -131,22 +128,18 @@ public class FirstStep {
     }
 
     public int sum(int[][] matrix) {
-        int sum = 0;
+        int sumMatrix = 0;
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                sum += matrix[i][j];
-            }
+            sumMatrix += sum(matrix[i]);
         }
-        return sum;
+        return sumMatrix;
     }
 
     public int max(int[][] matrix) {
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] > max) {
-                    max = matrix[i][j];
-                }
+            if (max < max(matrix[i])) {
+                max = max(matrix[i]);
             }
         }
         return max;
@@ -155,10 +148,8 @@ public class FirstStep {
     public int diagonalMax(int[][] matrix) {
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (i == j && matrix[i][j] > max) {
-                    max = matrix[i][j];
-                }
+            if (max < matrix[i][i]){
+                max = matrix[i][i];
             }
         }
         return max;
