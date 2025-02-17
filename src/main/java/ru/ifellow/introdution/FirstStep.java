@@ -1,8 +1,5 @@
 package ru.ifellow.introdution;
 
-import java.util.Arrays;
-import java.util.Map;
-
 public class FirstStep {
 
     public int sum(int x, int y) {
