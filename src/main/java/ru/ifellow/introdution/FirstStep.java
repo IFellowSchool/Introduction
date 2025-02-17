@@ -27,7 +27,7 @@ public class FirstStep {
     }
 
     public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y){
-        return (x >= xLeft && x <= xRight && y <= yTop && y >= yBottom);
+        return (x >= xLeft && x <= xRight && y >= yTop && y <= yBottom);
     }
 
     public int sum(int[] array){
