@@ -142,20 +142,4 @@ public class FirstStep {
         return true;
     }
 
-// for debug
-    public static void main(String[] args){
-        int x=15, y=6;
-        int[] a={1,2,3,4,5};
-        int[][] m ={
-                {9,8,7},
-                {6,5,4},
-                {3,2,1}
-        };
-        //System.out.println(isInsideRect(0,20,30,0, x, y));
-        //System.out.println(max(a));
-        //cube(a); System.out.println(a[2]);
-        //System.out.println(isSortedDescendant(m));
-        //System.out.println(diagonalMax(m));
-    }
-
 }
