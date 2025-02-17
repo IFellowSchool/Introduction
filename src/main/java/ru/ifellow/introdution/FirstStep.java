@@ -97,7 +97,8 @@ public class FirstStep {
 
     public void cube(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            array[i] = array[i] * array[i] * array[i];
+            array[i] = mul(new int[]{array[i], array[i], array[i]});
+            //array[i] = array[i] * array[i] * array[i];
         }
     }
 
