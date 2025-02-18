@@ -1,4 +1,4 @@
-package ru.ifellow.introdution;
+package ru.ifellow.JSchool.introdution;
 public class FirstStep {
 
     public int sum(int x, int y) {
