@@ -55,7 +55,7 @@ public class FirstSteps {
         int min = Integer.MAX_VALUE;
         if (array != null) {
             for (int i : array) {
-                if (i < min) {
+                if (isGreater(min, i)) {
                     min = i;
                 }
             }
@@ -67,7 +67,7 @@ public class FirstSteps {
         int max = Integer.MIN_VALUE;
         if (array != null) {
             for (int i : array) {
-                if (i > max) {
+                if (isGreater(i, max)) {
                     max = i;
                 }
             }
@@ -89,7 +89,7 @@ public class FirstSteps {
     public boolean isSortedDescendant(int[] array) {
         if (array != null) {
             for (int i = 0; i < array.length - 1; i++) {
-                if (array[i] < array[i + 1]) {
+                if (isGreater(array[i+1], array[i])) {
                     return false;
                 }
             }
@@ -108,7 +108,7 @@ public class FirstSteps {
     public boolean find(int[] array, int value) {
         if (array != null) {
             for (int i : array) {
-                if (i == value) {
+                if (isEqual(i, value)) {
                     return true;
                 }
             }
@@ -129,7 +129,7 @@ public class FirstSteps {
     public boolean isPalindrome(int[] array) {
         if (array != null) {
             for (int i = 0, j = array.length - 1; i <= j; i++, j--) {
-                if (array[i] != array[j]) {
+                if (!isEqual(array[i], array[j])) {
                     return false;
                 }
             }
@@ -152,7 +152,7 @@ public class FirstSteps {
         if (matrix != null) {
             for (int[] i : matrix) {
                 int tempMax = max(i);
-                if(tempMax > max){
+                if(isGreater(tempMax, max)){
                     max = tempMax;
                 }
             }
@@ -164,7 +164,7 @@ public class FirstSteps {
         int max = Integer.MIN_VALUE;
         if(matrix != null) {
             for (int i = 0; i < matrix.length; i++) {
-                if (matrix[i][i] > max) {
+                if (isGreater(matrix[i][i], max)) {
                     max = matrix[i][i];
                 }
             }
@@ -174,9 +174,19 @@ public class FirstSteps {
 
     public boolean isSortedDescendant(int[][] matrix) {
         if(matrix != null){
-            for(int[] i: matrix){
-                if(!isSortedDescendant(i)){
-                    return false;
+            int[] lastNotEmpty = null;
+            for(int i = 0; i < matrix.length; i++){
+                if(matrix[i].length > 0) {
+                    if (i > 0 && lastNotEmpty != null) {
+                        if (lastNotEmpty[lastNotEmpty.length - 1] < matrix[i][0] || !isSortedDescendant(matrix[i])) {
+                            return false;
+                        }
+                    } else {
+                        if (!isSortedDescendant(matrix[i])) {
+                            return false;
+                        }
+                    }
+                    lastNotEmpty = matrix[i];
                 }
             }
         }
