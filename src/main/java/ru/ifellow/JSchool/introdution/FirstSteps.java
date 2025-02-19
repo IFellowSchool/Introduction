@@ -30,7 +30,8 @@ public class FirstSteps {
     }
 
     public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y){
-        if (xLeft <= x && x <= xRight && yTop <= y && y <= yBottom) return true;
+        if (xLeft <= x && x <= xRight &&
+                yTop <= y && y <= yBottom) return true;
         else return false;
     }
 
