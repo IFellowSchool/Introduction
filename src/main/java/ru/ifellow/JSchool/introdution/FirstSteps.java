@@ -77,7 +77,7 @@ public class FirstSteps {
 
     public double average(int[] array) {
         double avg = 0;
-        if (array != null) {
+        if (array != null && array.length > 0) {
             for (int i : array) {
                 avg = sum((int) avg, i);
             }
