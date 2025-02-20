@@ -28,9 +28,18 @@ public class FirstSteps {
         return (x>y) ? true : false;
     } //Возвращает true, если x больше y, иначе false.
 
-//    public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y){
-//
-//    }
+    public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y){
+        boolean res = false;
+        if (
+            (x>=xLeft)&
+            (y>=yTop)&
+            (x<=xRight)&
+            (y<=yBottom)
+        ){
+            res = true;
+        }
+        return res;
+    }
 
     //Возвращает сумму чисел, заданных одномерным массивом array. Для пустого одномерного массива возвращает 0
     public int sum(int[] array){
@@ -200,8 +209,6 @@ public class FirstSteps {
                             break;
                         } //else temp = array[i];
                     }
-
-
                 }
             }
         }
@@ -256,23 +263,128 @@ public class FirstSteps {
     //Возвращает true, если одномерный массив является палиндромом, иначе false.
     //Пустой массив считается палиндромом.
     public boolean isPalindrome(int[]array){
-        return false;
+        boolean res = false;
+        if (array!=null){
+            int quantity = array.length;
+            if ((quantity == 0) || (quantity == 1)){
+                return true;
+            } else {
+                int tempArr[] = new int[quantity];
+                for (int k = 0; k < quantity; k++) {
+                    tempArr[k] = array[k];
+                }
+                reverse(tempArr);
+                for (int i = 0; i < quantity; i++) {
+                    if (array[i]!=tempArr[i]){
+                        res = false;
+                    } else res = true;
+                }
+            }
+        }
+        return res;
     }
-/*
+
+    //Возвращает сумму чисел, заданных двумерным массивом matrix.
     public int sum(int[][] matrix){
-
+        int res = 0;
+        if (matrix!=null){
+            int strok = matrix.length;
+            //int stolbcov = matrix[0].length;
+            //складываем элементы двумерный массив
+            for (int i = 0; i < strok; i++) {
+                for (int j = 0; j < matrix[i].length; j++) {
+                    res = res + matrix[i][j];
+                }
+                //System.out.println();
+            }
+        }
+        return res;
     }
-
+    //Возвращает максимальное из чисел, заданных двумерным массивом matrix.
+    // Для пустого двумерного массива возвращает Integer.MIN_VALUE.
     public int max(int[][] matrix){
+        int res = Integer.MIN_VALUE;
+        if (matrix!=null){
+            int strok = matrix.length;
+            int stolbcov = 0;
+            if (strok!=0){
+                stolbcov = matrix[0].length;
+            }
+            if (strok==0 || stolbcov ==0){
+                return Integer.MIN_VALUE;
+            } else {
+                res = matrix[0][0];
+                //перебираем двумерный массив
+                for (int i = 0; i < strok; i++) {
+                    for (int j = 0; j < matrix[i].length; j++) {
+                        //res = res + matrix[i][j];
+                        if (matrix[i][j] > res){
+                            res = matrix[i][j];
+                        }
+                    }
+                    //System.out.println();
+                }
+            }
 
+        }
+        return res;
     }
-
+    //Возвращает максимальное из чисел, находящихся на главной диагонали квадратного двумерного массива matrix.
+    // Для пустого двумерного массива возвращает Integer.MIN_VALUE
     public int diagonalMax(int[][] matrix){
+        int res = Integer.MIN_VALUE;
+        if (matrix!=null){
+            int strok = matrix.length;
+            int stolbcov = 0;
+            if (strok!=0){
+                stolbcov = matrix[0].length;
+            }
+            if (strok==0 || stolbcov ==0){
+                return Integer.MIN_VALUE;
+            } else {
+                res = matrix[0][0];
+                //перебираем двумерный массив
+                for (int i = 0; i < strok; i++) {
+                    for (int j = 0; j < matrix[i].length; j++) {
+                        //диагональ:
+                        if(i==j){
+                            if (matrix[i][j] > res){
+                                res = matrix[i][j];
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        return res;
 
     }
 
+    //Возвращает true, если все строки двумерного массива matrix строго упорядочены по убыванию,
+    // иначе false. Пустая строка считается упорядоченной.
+    // Разные строки массива matrix могут иметь разное количество элементов.
+    // При написании метода рекомендуется внутри него вызвать метод из п. 13.
     public boolean isSortedDescendant(int[][] matrix){
-
+        boolean res = false;
+        if (matrix!=null){
+            int strok = matrix.length;
+            int stolbcov = 0;
+            if (strok!=0){
+                stolbcov = matrix[0].length;
+            }
+            if (strok==0 || stolbcov ==0){
+                return true;
+            } else {
+                for (int i = 0; i < strok; i++) {
+                   if (!isSortedDescendant(matrix[i])){
+                       return false;
+                   }
+                }
+                res = true;
+            }
+        }
+        return res;
     }
-*/
+
 }
