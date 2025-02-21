@@ -5,39 +5,31 @@ package ru.ifellow.JSchool.introdution;
 public class FirstSteps {
 
     public int sum (int x, int y){
-        return x+y;
+        return x + y;
     } //Возвращает сумму чисел x и y.
 
     public int mul (int x, int y){
-        return x*y;
+        return x * y;
     } //Возвращает произведение чисел x и y.
 
     public int div (int x, int y){
-        return x/y;
+        return x / y;
     } //Возвращает частное от деления чисел x и y. Гарантируется, что y != 0.
 
     public int mod (int x, int y){
-        return x%y;
+        return x % y;
     } //Возвращает остаток от деления чисел x и y. Гарантируется, что y != 0.
 
     public boolean isEqual (int x, int y){
-        return (x==y) ? true : false;
+        return x == y;
     } //Возвращает true, если x равен y, иначе false.
 
     public boolean isGreater (int x, int y){
-        return (x>y) ? true : false;
+        return x > y;
     } //Возвращает true, если x больше y, иначе false.
 
     public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y){
-        boolean res = false;
-        if (
-            (x>=xLeft)&
-            (y>=yTop)&
-            (x<=xRight)&
-            (y<=yBottom)
-        ){
-            res = true;
-        }
+        boolean res = (x >= xLeft && y >= yTop && x <= xRight && y <= yBottom);
         return res;
     }
 
@@ -172,7 +164,7 @@ public class FirstSteps {
                 else {
                     int s = 0;
                     for (int value : array) {
-                        s += value;
+                        s = sum (s, value);
                     }
                     if (s!=0){
                         avg = (double) s / array.length;
@@ -187,32 +179,18 @@ public class FirstSteps {
     //Возвращает true, если одномерный массив array строго упорядочен по убыванию, иначе false.
     //Пустой одномерный массив считается упорядоченным.
     public boolean isSortedDescendant(int[] array){
-        boolean res = true;
-        if (array == null){
+        if(array == null) {
+            return false;
+        }
+        if (array.length == 0 || array.length == 1) {
             return true;
         }
-        else {
-            if (array.length==0){
-                return true;
-            }
-            else {
-                if (array.length==1){
-                    return true;
-                }
-                else {
-                    //int temp = array[0];
-
-                    for (int i = 0; i < array.length-1; i++) {
-                        int temp = array[i];
-                        if (temp<=array[i+1]){
-                            res = false;
-                            break;
-                        } //else temp = array[i];
-                    }
-                }
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] <= array[i + 1]) {
+                return false;
             }
         }
-        return res;
+        return true;
     }
 
     //Возводит все элементы одномерного массива array в куб.
@@ -287,77 +265,60 @@ public class FirstSteps {
     //Возвращает сумму чисел, заданных двумерным массивом matrix.
     public int sum(int[][] matrix){
         int res = 0;
-        if (matrix!=null){
-            int strok = matrix.length;
-            //int stolbcov = matrix[0].length;
-            //складываем элементы двумерный массив
-            for (int i = 0; i < strok; i++) {
-                for (int j = 0; j < matrix[i].length; j++) {
-                    res = res + matrix[i][j];
-                }
-                //System.out.println();
-            }
+        if (matrix == null || matrix.length == 0) {
+            return 0;
         }
+
+        int strok = matrix.length;
+        //int stolbcov = matrix[0].length;
+        //складываем элементы двумерный массив
+        for (int i = 0; i < strok; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                res = sum(res, matrix[i][j]);
+            }
+                //System.out.println();
+        }
+
         return res;
     }
     //Возвращает максимальное из чисел, заданных двумерным массивом matrix.
     // Для пустого двумерного массива возвращает Integer.MIN_VALUE.
     public int max(int[][] matrix){
         int res = Integer.MIN_VALUE;
-        if (matrix!=null){
-            int strok = matrix.length;
-            int stolbcov = 0;
-            if (strok!=0){
-                stolbcov = matrix[0].length;
-            }
-            if (strok==0 || stolbcov ==0){
-                return Integer.MIN_VALUE;
-            } else {
-                res = matrix[0][0];
-                //перебираем двумерный массив
-                for (int i = 0; i < strok; i++) {
-                    for (int j = 0; j < matrix[i].length; j++) {
-                        //res = res + matrix[i][j];
-                        if (matrix[i][j] > res){
-                            res = matrix[i][j];
-                        }
-                    }
-                    //System.out.println();
-                }
-            }
+        int strok = matrix.length;
+        if (matrix == null || strok == 0 || matrix[0].length == 0) {
+            return Integer.MIN_VALUE;
+        }
 
+        //перебираем двумерный массив
+        for (int i = 0; i < strok; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                 //res = res + matrix[i][j];
+                 if (matrix[i][j] > res){
+                     res = matrix[i][j];
+                 }
+            }
         }
         return res;
     }
+
+
     //Возвращает максимальное из чисел, находящихся на главной диагонали квадратного двумерного массива matrix.
     // Для пустого двумерного массива возвращает Integer.MIN_VALUE
     public int diagonalMax(int[][] matrix){
-        int res = Integer.MIN_VALUE;
-        if (matrix!=null){
-            int strok = matrix.length;
-            int stolbcov = 0;
-            if (strok!=0){
-                stolbcov = matrix[0].length;
-            }
-            if (strok==0 || stolbcov ==0){
-                return Integer.MIN_VALUE;
-            } else {
-                res = matrix[0][0];
-                //перебираем двумерный массив
-                for (int i = 0; i < strok; i++) {
-                    for (int j = 0; j < matrix[i].length; j++) {
-                        //диагональ:
-                        if(i==j){
-                            if (matrix[i][j] > res){
-                                res = matrix[i][j];
-                            }
-                        }
-                    }
+        int max = Integer.MIN_VALUE;
+        if (matrix == null || matrix.length == 0) {
+            return Integer.MIN_VALUE;
+        }
+
+        for (int i = 0; i < matrix.length; i++) {
+            if (matrix[i] != null && matrix[i].length > i) {
+                if (matrix[i][i] > max) {
+                    max = matrix[i][i];
                 }
             }
-
         }
-        return res;
+        return max;
 
     }
 
@@ -366,25 +327,15 @@ public class FirstSteps {
     // Разные строки массива matrix могут иметь разное количество элементов.
     // При написании метода рекомендуется внутри него вызвать метод из п. 13.
     public boolean isSortedDescendant(int[][] matrix){
-        boolean res = false;
-        if (matrix!=null){
-            int strok = matrix.length;
-            int stolbcov = 0;
-            if (strok!=0){
-                stolbcov = matrix[0].length;
-            }
-            if (strok==0 || stolbcov ==0){
-                return true;
-            } else {
-                for (int i = 0; i < strok; i++) {
-                   if (!isSortedDescendant(matrix[i])){
-                       return false;
-                   }
-                }
-                res = true;
+        if(matrix == null){
+            return false;
+        }
+        for (int i = 0; i < matrix.length; i++) {
+            if (matrix[i] == null || !isSortedDescendant(matrix[i])) {
+                return false;
             }
         }
-        return res;
+        return true;
     }
 
 }
