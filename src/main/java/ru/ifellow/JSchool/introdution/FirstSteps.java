@@ -181,7 +181,10 @@ public class FirstSteps {
         }
         int max = Integer.MIN_VALUE;
         for (int[] row : matrix) {
-            max = max(row);
+            int rowMax = max(row);
+            if (rowMax > max) {
+                max = rowMax;
+            }
         }
         return max;
     }
