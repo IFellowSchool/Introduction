@@ -100,7 +100,10 @@ public class FirstSteps {
     }
 
     public double average(int[] array){
-        return (double) sum(array) / array.length;
+        if (array.length != 0) {
+            return (double) sum(array) / array.length;
+        }
+        return 0;
     }
 
     public boolean isSortedDescendant(int[] array){
@@ -118,9 +121,8 @@ public class FirstSteps {
     }
 
     public void cube(int[]array){
-        var result = new long[array.length];
         for (int i = 0; i < array.length; i++) {
-            result[i] = (long) Math.pow(array[i], 3);
+            array[i] = (int) array[i] * array[i] * array[i];
         }
     }
 
