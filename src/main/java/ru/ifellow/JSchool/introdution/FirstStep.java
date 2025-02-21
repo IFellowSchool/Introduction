@@ -80,7 +80,12 @@ public class FirstStep {
         for (int i = 0; i < array.length; i++) {
             sum += array[i];
         }
-        return sum / array.length;
+        if (array.length == 0) {
+            return 0;
+        } else {
+            return sum / array.length;
+        }
+
     }
 
     public boolean isSortedDescendant(int[] array) {
