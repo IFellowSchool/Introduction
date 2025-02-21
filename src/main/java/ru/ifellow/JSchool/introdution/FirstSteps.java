@@ -3,10 +3,22 @@ package ru.ifellow.JSchool.introdution;
 public class FirstSteps {
 
     public int sum (int x, int y){
+        if ((y > 0 && x > Integer.MAX_VALUE - y) ||
+            (y < 0 && x < Integer.MIN_VALUE - y)) {
+            throw new ArithmeticException("Переполнение int'а");
+        }
         return x + y;
     }
 
     public int mul (int x, int y){
+        if (x != 0 && y != 0) {
+            if (x > 0 && y > Integer.MAX_VALUE / x) {
+                throw new ArithmeticException("Переполнение int'а");
+            }
+            if (x < 0 && y < Integer.MAX_VALUE / x) {
+                throw new ArithmeticException("Переполнение int'а");
+            }
+        }
         return x * y;
     }
 
@@ -93,8 +105,7 @@ public class FirstSteps {
 
     public void cube(int[]array){
         for(int i = 0; i < array.length; i++) {
-            int a = array[i];
-            array[i] = a * a * a;
+            array[i] = mul(mul(array[i],array[i]), array[i]);
         }
     }
 
@@ -139,13 +150,16 @@ public class FirstSteps {
     public int max(int[][] matrix){
         int maxValue = Integer.MIN_VALUE;
         for(int[] i : matrix) {
-            maxValue = max(i);
+            maxValue = Math.max(maxValue, max(i));
         }
 
         return maxValue;
     }
 
     public int diagonalMax(int[][] matrix){
+        if(matrix[0].length != matrix.length) {
+            throw new IllegalArgumentException("Матрица должна быть квадратной");
+        }
         int maxValue = Integer.MIN_VALUE;
         for(int i = 0; i < matrix.length; i++) {
             maxValue = Math.max(maxValue, matrix[i][i]);
