@@ -1,89 +1,188 @@
 package ru.ifellow.JSchool.introdution;
+public class FirstStep {
 
-public class FirstSteps {
+    public int sum(int x, int y) {
+        return x + y;
+    }
 
-    public int sum (int x, int y){
+    public int mul (int x, int y) {
+        return x * y;
+    }
+
+    public int div (int x, int y) {
+        return y != 0 ? x / y : 0;
+    }
+
+    public int mod (int x, int y) {
+        return y != 0 ? x % y : 0;
+    }
+
+    public boolean isEqual (int x, int y) {
+        return x == y ? true : false;
 
     }
 
-    public int mul (int x, int y){
+    public boolean isGreater (int x, int y) {
+        return x > y ? true : false;
+    }
+
+    public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y) {
+        return x >= xLeft && x <= xRight && y >= yTop && y <= yBottom ? true : false;
+    }
+
+    public int sum(int[] array) {
+
+        int res = 0;
+        for (int i = 0; i < array.length; i++) {
+            res += array[i];
+        }
+        return  res;
+    }
+
+    public int mul(int[] array) {
+
+        int res = 1;
+        if (array.length == 0) {
+            res = 0;
+        } else {
+            for (int i = 0; i < array.length; i++) {
+                res *= array[i];
+            }
+        }
+        return res;
+    }
+
+    public int min(int[] array) {
+
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+        return min;
+    }
+
+    public int max(int[] array) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+        return max;
 
     }
 
-    public int div (int x, int y){
+    public double average(int[] array) {
 
+        double res = 0.0;
+        for (int i = 0; i < array.length; i++) {
+            res += array[i];
+        }
+
+        return array.length > 0 ? res / array.length : 0.0;
     }
 
-    public int mod (int x, int y){
+    public boolean isSortedDescendant(int[] array) {
 
+        boolean flag = true;
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] <= array[i + 1]) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
     }
 
-    public boolean isEqual (int x, int y){
+    public void cube(int[]array) {
 
+        for (int i = 0; i < array.length; i++) {
+            array[i] = array[i] * array[i] * array[i];
+        }
     }
 
-    public boolean isGreater (int x, int y){
+    public boolean find(int[]array, int value) {
 
+        boolean res = false;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value) {
+                res = true;
+                break;
+            }
+        }
+        return res;
     }
 
-    public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y){
+    public void reverse(int[]array) {
+        int[] rev_array = new int[array.length];
 
+        for (int i = 0; i < array.length; i++) {
+            rev_array[array.length - i - 1] = array[i];
+        }
     }
 
-    public int sum(int[] array){
+    public boolean isPalindrome(int[]array) {
 
+        boolean flag = true;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != array[array.length - i - 1]) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
     }
 
-    public int mul(int[] array){
+    public int sum(int[][] matrix) {
 
+        int sum = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                sum += matrix[i][j];
+            }
+        }
+        return sum;
     }
 
-    public int min(int[] array){
+    public int max(int[][] matrix) {
 
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] > max) {
+                    max = matrix[i][j];
+                }
+            }
+        }
+        return max;
     }
 
-    public int max(int[] array){
+    public int diagonalMax(int[][] matrix) {
 
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (i == j) {
+                    if (matrix[i][j] > max) {
+                        max = matrix[i][j];
+                    }
+                }
+            }
+        }
+        return max;
     }
 
-    public double average(int[] array){
+    public boolean isSortedDescendant(int[][] matrix) {
 
+        boolean flag = true;
+        for (int i = 0; i < matrix.length; i++) {
+            if (!isSortedDescendant(matrix[i])) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
     }
-
-    public boolean isSortedDescendant(int[] array){
-
-    }
-
-    public void cube(int[]array){
-
-    }
-
-    public boolean find(int[]array, int value){
-
-    }
-
-    public void reverse(int[]array){
-
-    }
-
-    public boolean isPalindrome(int[]array){
-
-    }
-
-    public int sum(int[][] matrix){
-
-    }
-
-    public int max(int[][] matrix){
-
-    }
-
-    public int diagonalMax(int[][] matrix){
-
-    }
-
-    public boolean isSortedDescendant(int[][] matrix){
-
-    }
-
 }
